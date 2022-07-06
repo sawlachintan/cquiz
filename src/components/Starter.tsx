@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FC } from "react";
 
 type Props = {
@@ -8,11 +8,13 @@ type Props = {
 export const Starter: FC<Props> = ({ onClick }) => {
     return (
         <div className="App App-header">
-            <h1>Start Quiz</h1>
-            <p>
+            <Typography variant="h1" color="text.primary">
+                Start Quiz
+            </Typography>
+            <Typography variant="body1" color="text.primary">
                 This quiz intends to help you find the most suitable major based
                 on the responses to the questions
-            </p>
+            </Typography>
             <Button onClick={onClick} variant="contained">
                 Start Quiz
             </Button>
