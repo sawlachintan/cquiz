@@ -17,6 +17,7 @@ import { Starter } from "./components/Starter";
 import { getDesignTokens } from "./themes/Themes";
 import { questions, majors, answerQuestion, ANSWER } from "./assets/constants";
 import { FormContainer } from "./components/FormContainer";
+import { RadarChart } from "./components/RadarChart";
 
 function App() {
     const TOTAL_QUESTIONS = questions.length;
@@ -40,7 +41,27 @@ function App() {
         handleNext();
     };
 
-    console.log({ majors, questions });
+    const label = Object.keys(majors);
+    console.log({ majors, questions, label });
+    const dataScore = [];
+    for (const property in majors) {
+        dataScore.push(majors[property].score);
+    }
+    console.log(dataScore);
+
+    const data = {
+        labels: label,
+        datasets: [
+            {
+                label: "Your Scores",
+                data: dataScore,
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 1,
+                color: "#ffffff",
+            },
+        ],
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -71,7 +92,6 @@ function App() {
                                     <Typography
                                         variant="h3"
                                         color="text.primary"
-
                                     >
                                         {questions[count].text}
                                     </Typography>
@@ -102,10 +122,7 @@ function App() {
                                 </Stack>
                             </Grid>
                             <Grid item>
-                                <Typography color="primary">
-                                    {" "}
-                                    Radar Chart for analysis
-                                </Typography>
+                                <RadarChart data={data}></RadarChart>
                             </Grid>
                         </Grid>
                     </header>

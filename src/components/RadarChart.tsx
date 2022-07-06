@@ -21,5 +21,5 @@ type Props = {
     data: any;
 };
 export const RadarChart: FC<Props> = ({ data }) => {
-    return <Radar data={data}></Radar>;
+    return <Radar data={data} />;
 };
